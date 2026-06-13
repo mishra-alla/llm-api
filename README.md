@@ -65,23 +65,23 @@ uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 1. Регистрация пользователя
 Email должен быть в формате: student_surname@email.com
 
-![Регистрация] (screenshots/01_registration.png)
+![Регистрация](screenshots/01_registration.png)
 
 2. Авторизация в Swagger
-![Авторизация] (screenshots/02_auth_swagger.png)
+![Авторизация](screenshots/02_auth_swagger.png)
 
 3. Получение JWT токена
-![Получение_JWT_токена] (screenshots/03_token.png)
+![Получение_JWT_токена](screenshots/03_token.png)
 
 4. Отправка запроса к LLM (POST /chat)
-![Работа_чата] (screenshots/04_post_chat.png)
+![Работа_чата](screenshots/04_post_chat.png)
 
 5. Получение истории диалога (GET /chat/history)
-![История_диалога] (screenshots/05_get_history.png)
+![История_диалога](screenshots/05_get_history.png)
 
 6. Очистка истории (DELETE /chat/history)
 Удаление всей истории сообщений
-![Очистка_истории] (screenshots/06_delete_history.png)
+![Очистка_истории](screenshots/06_delete_history.png)
 
 ### Health check
 ```

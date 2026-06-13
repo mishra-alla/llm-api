@@ -62,7 +62,6 @@ uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 После запуска: http://localhost:8000/docs
 ```
 # Демонстрация работы
-```
 1. Регистрация пользователя
 Email должен быть в формате: student_surname@email.com
 https://screenshots/01_registration.png
@@ -82,7 +81,7 @@ https://screenshots/05_get_history.png
 6. Очистка истории (DELETE /chat/history)
 Удаление всей истории сообщений
 https://screenshots/06_delete_history.png
-```
+
 ### Health check
 ```
 curl http://localhost:8000/health

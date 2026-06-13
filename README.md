@@ -77,32 +77,14 @@ uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ### Получение истории диалога (GET /chat/history)
 ![История_диалога](screenshots/05_get_history.png)
 
-6. Очистка истории (DELETE /chat/history)
+### Очистка истории (DELETE /chat/history)
 Удаление всей истории сообщений
 ![Очистка_истории](screenshots/06_delete_history.png)
 
 ### Health check
 ```
 curl http://localhost:8000/health
-```
-### Регистрация
-```
-curl -X POST http://localhost:8000/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"email":"mishra@email.com","password":"test123456"}'
-```
-### Логин
-```
-curl -X POST http://localhost:8000/auth/login \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "username=mishra@email.com&password=test123456"
-  ```
-### Отправка сообщения
-```
-curl -X POST http://localhost:8000/chat \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"prompt":"Расскажи о Python","max_history":10,"temperature":0.7}'
+
 ```
 ### Проверка качества кода
 ```

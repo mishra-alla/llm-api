@@ -61,22 +61,20 @@ uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 # Документация API
 После запуска: http://localhost:8000/docs
 ```
-# Демонстрация работы
-1. Регистрация пользователя
-Email должен быть в формате: student_surname@email.com
-
+## Демонстрация работы
+### Регистрация пользователя
 ![Регистрация](screenshots/01_registration.png)
 
-2. Авторизация в Swagger
+### Авторизация в Swagger
 ![Авторизация](screenshots/02_auth_swagger.png)
 
-3. Получение JWT токена
+### Получение JWT токена
 ![Получение_JWT_токена](screenshots/03_token.png)
 
-4. Отправка запроса к LLM (POST /chat)
+### Отправка запроса к LLM (POST /chat)
 ![Работа_чата](screenshots/04_post_chat.png)
 
-5. Получение истории диалога (GET /chat/history)
+### Получение истории диалога (GET /chat/history)
 ![История_диалога](screenshots/05_get_history.png)
 
 6. Очистка истории (DELETE /chat/history)

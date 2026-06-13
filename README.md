@@ -106,6 +106,10 @@ curl -X POST http://localhost:8000/chat \
   -H "Content-Type: application/json" \
   -d '{"prompt":"Расскажи о Python","max_history":10,"temperature":0.7}'
 ```
+### Проверка качества кода
+```
+ruff check app/
+```
 
 ## Автор
 Мишра Алла:  mishra-alla

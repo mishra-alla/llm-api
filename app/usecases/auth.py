@@ -1,7 +1,7 @@
 # app/usecases/auth.py
 from app.repositories.users import UserRepository
 from app.core.security import hash_password, verify_password, create_access_token
-from app.core.errors import ConflictError, UnauthorizedError, NotFoundError
+from app.core.errors import ConflictError, UnauthorizedError
 
 
 class AuthUseCase:

@@ -9,54 +9,20 @@
 
 ## Структура проекта
 ```
-llm_p/
-├── pyproject.toml                 # Зависимости проекта (uv)
-├── README.md                      # Описание проекта и запуск
-├── .env.example                   # Пример переменных окружения
-│
+llm-p/
 ├── app/
-│   ├── init.py
-│   ├── main.py                    # Точка входа FastAPI
-│   │
-│   ├── core/                      # Общие компоненты и инфраструктура
-│   │   ├── init.py
-│   │   ├── config.py              # Конфигурация приложения (env → Settings)
-│   │   ├── security.py            # JWT, хеширование паролей
-│   │   └── errors.py              # Доменные исключения
-│   │
-│   ├── db/                        # Слой работы с БД
-│   │   ├── init.py
-│   │   ├── base.py                # DeclarativeBase
-│   │   ├── session.py             # Async engine и sessionmaker
-│   │   └── models.py              # ORM-модели (User, ChatMessage)
-│   │
-│   ├── schemas/                   # Pydantic-схемы (вход/выход API)
-│   │   ├── init.py
-│   │   ├── auth.py                # Регистрация, логин, токены
-│   │   ├── user.py                # Публичная модель пользователя
-│   │   └── chat.py                # Запросы и ответы LLM
-│   │
-│   ├── repositories/              # Репозитории (ТОЛЬКО SQL/ORM)
-│   │   ├── init.py
-│   │   ├── users.py               # Доступ к таблице users
-│   │   └── chat_messages.py       # Доступ к истории чатов
-│   │
-│   ├── services/                  # Внешние сервисы
-│   │   ├── init.py
-│   │   └── openrouter_client.py   # Клиент OpenRouter / LLM
-│   │
-│   ├── usecases/                  # Бизнес-логика приложения
-│   │   ├── init.py
-│   │   ├── auth.py                # Регистрация, логин, профиль
-│   │   └── chat.py                # Логика общения с LLM
-│   │
-│   └── api/                       # HTTP-слой (тонкие эндпоинты)
-│       ├── init.py
-│       ├── deps.py                # Dependency Injection
-│       ├── routes_auth.py         # /auth/*
-│       └── routes_chat.py         # /chat/*
-│
-└── app.db                         # SQLite база (создаётся при запуске)
+│   ├── api/           # HTTP-слой (роутеры)
+│   ├── core/          # Конфигурация, безопасность, ошибки
+│   ├── db/            # База данных (модели, сессии)
+│   ├── repositories/  # Слой доступа к данным
+│   ├── schemas/       # Pydantic схемы
+│   ├── services/      # Внешние сервисы (OpenRouter)
+│   ├── usecases/      # Бизнес-логика
+│   └── main.py        # Точка входа
+├── screenshots/       # Скриншоты для документации
+├── .env               # Конфигурация окружения
+├── pyproject.toml     # Зависимости проекта
+└── README.md          # Документация
 ```
 ## Технологии
 - FastAPI
@@ -95,3 +61,51 @@ uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 # Документация API
 После запуска: http://localhost:8000/docs
 ```
+# Демонстрация работы
+```
+1. Регистрация пользователя
+Email должен быть в формате: student_surname@email.com
+https://screenshots/01_registration.png
+
+2. Авторизация в Swagger
+https://screenshots/02_auth_swagger.png
+
+3. Получение JWT токена
+https://screenshots/03_token.png
+
+4. Отправка запроса к LLM (POST /chat)
+https://screenshots/04_post_chat.png
+
+5. Получение истории диалога (GET /chat/history)
+https://screenshots/05_get_history.png
+
+6. Очистка истории (DELETE /chat/history)
+Удаление всей истории сообщений
+https://screenshots/06_delete_history.png
+```
+### Health check
+```
+curl http://localhost:8000/health
+```
+### Регистрация
+```
+curl -X POST http://localhost:8000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email":"mishra@email.com","password":"test123456"}'
+```
+### Логин
+```
+curl -X POST http://localhost:8000/auth/login \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "username=mishra@email.com&password=test123456"
+  ```
+### Отправка сообщения
+```
+curl -X POST http://localhost:8000/chat \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"prompt":"Расскажи о Python","max_history":10,"temperature":0.7}'
+```
+
+## Автор
+Мишра Алла:  mishra-alla
